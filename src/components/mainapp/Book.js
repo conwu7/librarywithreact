@@ -19,7 +19,7 @@ class Book extends React.Component {
     render() {
         const {book, isFormNeeded} = this.props;
         return (
-            <div>
+            <div className='bookContainer'>
                 <BookDetails book={book}/>
                 <BookAction book={book} onEditClick={this.onEditClick} isFormNeeded={isFormNeeded}
                 handleDelete={this.handleDelete}

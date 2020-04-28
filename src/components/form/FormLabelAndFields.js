@@ -3,7 +3,7 @@ import React from "react";
 class FormLabelAndFields extends React.Component {
     render() {
         return (
-            <div className={'formLabelAndFields'}>
+            <div className={'formLabelAndFields formWrapper'}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" id="title" name='title' onChange={this.props.handleChange}
                        value={this.props.values.title}

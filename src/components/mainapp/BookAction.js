@@ -18,36 +18,26 @@ class BookAction extends React.Component {
         })
         updateLocalStorageBook(book);
     }
-
-    trashStyle = {
-        height: '30px',
-        backgroundColor: 'inherit',
-        color: 'inherit',
-        border: '1px solid gray',
-        margin: '0',
-        verticalAlign: 'middle'
-    }
     render() {
         const isRead = this.state.read;
         const {onEditClick, isFormNeeded, handleDelete} = this.props;
         return (
-            <div className={'bookActionContainer'}
-                 style={{height: '50px',padding: 0}}>
-                <button className={'editBtn modifyBook'} style={this.trashStyle} disabled={isFormNeeded}
+            <div className={'bookActionContainer'}>
+                <button className={'editBtn modifyBook'}  disabled={isFormNeeded}
                         onClick={onEditClick} type='button'
-                >Edit</button>
+                ><span className='buttonText'>Edit</span></button>
                 {isRead?
-                    <button className={'readBtn modifyBook'} style={this.trashStyle} disabled={isFormNeeded}
+                    <button className={'readBtn modifyBook'}  disabled={isFormNeeded}
                             onClick={this.handleToggleRead}
-                    >Read</button>
-                  : <button className={'readBtn unread modifyBook'} style={this.trashStyle} disabled={isFormNeeded}
+                    ><span className='buttonText'>Read</span></button>
+                  : <button className={'readBtn unread modifyBook'}  disabled={isFormNeeded}
                             onClick={this.handleToggleRead}
-                    >Unread</button>
+                    ><span className='buttonText'>Unread</span></button>
                 }
-                <button className={'deletebtn modifyBook'} style={this.trashStyle} type='button'
+                <button className={'deleteBtn modifyBook'} type='button'
                         disabled={isFormNeeded} onClick={handleDelete}
                 >
-                    <img alt="Trash Icon" style={{height: '20px',backgroundColor: 'inherit'}}
+                    <img alt="Trash Icon"
                              src={TrashIcon}/>
                 </button>
             </div>

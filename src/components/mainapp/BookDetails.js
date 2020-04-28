@@ -4,7 +4,7 @@ class BookDetails extends React.Component {
     render() {
         const book = this.props.book;
         return (
-           <div className={'bookDetails'}>
+           <div className={'bookDetails'} style={{backgroundColor: book.bookColor}}>
                <h2>{book.title}</h2>
                <h4><span className={'prefixValues'}>by  </span>{book.author}</h4>
                <h5>{book.numPages} <span>pages</span></h5>

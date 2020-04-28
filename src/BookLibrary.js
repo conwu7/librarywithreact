@@ -18,8 +18,11 @@ class BookLibrary extends React.Component{
         this.handleFormOnEdit = this.handleFormOnEdit.bind(this);
         this.state = {
             isCreating: false,
-            isFormNeeded: false
+            isFormNeeded: false,
+            windowHeight: window.innerHeight,
+            windowWidth: window.innerWidth
         }
+        window.addEventListener('resize',this.handleWindowResizing.bind(this))
     }
     handleSaveBook(title, author, numPages, yearPub, bookColor) {
         if (this.state.isCreating) {
@@ -51,6 +54,17 @@ class BookLibrary extends React.Component{
             }
         )
     }
+    handleWindowResizing () {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            return
+        }
+        this.setState(
+            {
+                windowHeight: window.innerHeight,
+                windowWidth: window.innerWidth
+            }
+        )
+    }
     render() {
         const booksArray = this.booksArray;
         const handleForm = this.handleFormNeeded;
@@ -61,7 +75,7 @@ class BookLibrary extends React.Component{
         const isFormNeeded = this.state.isFormNeeded;
         const bookToEdit = this.bookToEdit
         return (
-            <div className="App">
+            <div className="App" style={{width: window.innerWidth}}>
                 <Header />
                 <NewBookButton handleForm={handleForm} isFormNeeded={isFormNeeded}/>
                 <FormMulti handleForm={handleForm} handleSave={handleSave} isFormNeeded={isFormNeeded}

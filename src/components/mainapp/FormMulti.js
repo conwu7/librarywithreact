@@ -19,7 +19,7 @@ class FormMulti extends React.Component {
             <Formik
             initialValues={ (this.props.isCreating) ?
                 {
-                    title: '', author: '', numPages: 100, yearPub: 2020, bookColor: '#FBF2E3'
+                    title: '', author: '', numPages: '', yearPub: '', bookColor: '#FBF2E3'
                 }
                 : {
                     title: bookToEdit.title, author: bookToEdit.author, numPages: bookToEdit.numPages,
@@ -39,11 +39,11 @@ class FormMulti extends React.Component {
                 {
                     ({handleBlur, isSubmitting, errors,
                       values ,handleSubmit, handleChange}) => (
-                    <form>
+                        <form className='formContainer'>
                         <FormLabelAndFields {...{handleChange, values}}/>
                         <FormErrors errors={errors}/>
                         <SaveCancel cancel={this.onCancel} handleSubmit={handleSubmit}/>
-                    </form>
+                        </form>
                     )
                 }
             </Formik>

@@ -4,13 +4,13 @@ class SaveCancel extends React.Component {
     render() {
         const {cancel, handleSubmit} = this.props;
         return (
-            <div>
-                <div>
-                    <button type={'button'} id='cancelBtn' onClick={cancel}
+            <div className='newBookContainer'>
+                <div style={{display: 'inline-block'}}>
+                    <button type={'button'} id='cancelBtn' className='cancelBtn' onClick={cancel}
                     >Cancel</button>
                 </div>
-                <div>
-                    <button type="submit" id='saveBtn' onClick={handleSubmit}
+                <div style={{display: 'inline-block'}}>
+                    <button type="submit" id='saveBtn' className='saveBtn' onClick={handleSubmit}
                     >Save</button>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 function Header() {
     return (
-        <h1>Book Library</h1>
+        <h1>My Book Library</h1>
     )
 }
 
