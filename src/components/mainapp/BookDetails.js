@@ -1,12 +1,15 @@
 import React from 'react';
 
 class BookDetails extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
+        const book = this.props.book;
         return (
-            <input/>
+           <div className={'bookDetails'}>
+               <h2>{book.title}</h2>
+               <h4><span className={'prefixValues'}>by  </span>{book.author}</h4>
+               <h5>{book.numPages} <span>pages</span></h5>
+               <h5><span className={'prefixValues'}>Published in </span>{book.yearPub}</h5>
+           </div>
         )
     }
 }

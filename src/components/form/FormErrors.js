@@ -1,12 +1,12 @@
 import React from "react";
 
 class FormErrors extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
+        // const errors = this.props.errors; //Object containing errors for each field
         return (
-            <input />
+            <div className={'errorDiv'}>
+                {/* Add a p element for each error message*/}
+            </div>
         )
     }
 }
