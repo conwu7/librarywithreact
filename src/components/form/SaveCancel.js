@@ -4,7 +4,7 @@ export default class SaveCancel extends React.Component {
     render() {
         const {cancel, handleSubmit} = this.props;
         return (
-            <div className='newBookContainer'>
+            <div className='newBookContainer saveCancelContainer'>
                 <div style={{display: 'inline-block'}}>
                     <button type={'button'} id='cancelBtn' className='cancelBtn' onClick={cancel}
                     >Cancel</button>

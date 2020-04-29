@@ -4,7 +4,7 @@ export function updateLocalStorageBook(bookObj) {
 export function removeLocalStorageBook(bookObj) {
     localStorage.removeItem(`REACTBK${bookObj.indexForStorage}`);
 }
-export function hexToRgb(hex) {
+function hexToRgb(hex) {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
     let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, function(m, r, g, b) {
@@ -18,9 +18,9 @@ export function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
-export function isContrastLow(colorOne, colorTwo) { //colorTwo should be the darker color.
+export function isContrastLow(colorOne, darkerColor) { //colorTwo should be the darker color.
     let colorOneRGB = hexToRgb(colorOne);
-    let colorTwoRGB = hexToRgb(colorTwo);
+    let colorTwoRGB = hexToRgb(darkerColor);
     const formatRGB = (colorObj) => {
         let colorKeys = Object.keys(colorObj);
         colorKeys.forEach(function(key) {

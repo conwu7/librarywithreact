@@ -3,6 +3,7 @@ import {Formik} from 'formik';
 import FormLabelAndFields from '../form/FormLabelAndFields';
 import SaveCancel from '../form/SaveCancel';
 import * as validateBook from './validation';
+import BookDetails from "./BookDetails";
 
 class FormMulti extends React.Component {
     constructor(props) {
@@ -14,10 +15,11 @@ class FormMulti extends React.Component {
     }
     render() {
         if (!this.props.isFormNeeded) return null;
-        const bookToEdit = this.props.bookToEdit;
+        const {bookToEdit, isCreating} = this.props;
+        const editingBookDetails = <div><h2>Editing</h2><BookDetails book={bookToEdit}/></div>;
         return (
             <Formik
-            initialValues={ (this.props.isCreating) ?
+            initialValues={ (isCreating) ?
                 {
                     title: '', author: '', numPages: '', yearPub: '', bookColor: '#FBF2E3'
                 }
@@ -49,11 +51,14 @@ class FormMulti extends React.Component {
                     ({handleBlur, errors,
                       values ,handleSubmit, handleChange,touched}) => (
                         <form className='formContainer'>
-                        <FormLabelAndFields {...{handleChange, values, handleBlur, touched}}
+                            <div className='formTitle'>
+                                {isCreating? <h2>Creating New Book</h2> : editingBookDetails}
+                            </div>
+                            <FormLabelAndFields {...{handleChange, values, handleBlur, touched}}
                             titleError={errors.title} authorError={errors.author}
                             numPagesError={errors.numPages} yearPubError={errors.yearPub}
-                        />
-                        <SaveCancel cancel={this.onCancel} handleSubmit={handleSubmit}/>
+                            />
+                            <SaveCancel cancel={this.onCancel} handleSubmit={handleSubmit}/>
                         </form>
                     )
                 }
