@@ -22,7 +22,6 @@ class BookLibrary extends React.Component{
             windowHeight: window.innerHeight,
             windowWidth: window.innerWidth
         }
-        window.addEventListener('resize',this.handleWindowResizing.bind(this))
     }
     handleSaveBook(title, author, numPages, yearPub, bookColor) {
         if (this.state.isCreating) {
@@ -65,6 +64,10 @@ class BookLibrary extends React.Component{
             }
         )
     }
+    componentDidMount() {
+        window.addEventListener('resize',this.handleWindowResizing.bind(this));
+    }
+
     render() {
         const booksArray = this.booksArray;
         const handleForm = this.handleFormNeeded;

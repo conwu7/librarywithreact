@@ -19,6 +19,9 @@ body {
     height: 27px;
     width: 150px;
 }
+.formContainer input.invalid {
+    border: solid 2px firebrick;
+}
 .formContainer label {
     display: inline-block;
     margin: 10px 15px;

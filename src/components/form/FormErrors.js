@@ -1,15 +1,22 @@
 import React from "react";
 
-class FormErrors extends React.Component {
+export default class FormErrors extends React.Component {
+
     render() {
-        const errors = this.props.errors; //Object containing errors for each field
-        if (Object.keys(errors).length === 0) return null;
+        const {errors, touched} = this.props;
+        const {title, author, numPages, yearPub} = this.props.errors;
+        if (!title && !author && !numPages && !yearPub) return null;
+        const allErrorsUntouched = Object.keys(errors).every(
+            inputName => !touched[inputName]
+        )
+        if (allErrorsUntouched) return null //If all the errors are from untouched inputs, return null
         return (
             <div className={'errorDiv'}>
-                {/* Add a p element for each error message*/}
+                {Object.keys(errors).map(inputName => (
+                    (touched[inputName] && errors[inputName]) ? <p key={inputName}>{errors[inputName]}</p>
+                        : null
+                ))}
             </div>
         )
     }
 }
-
-export default FormErrors;

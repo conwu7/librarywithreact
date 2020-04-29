@@ -1,6 +1,6 @@
 import React from "react";
 
-class SaveCancel extends React.Component {
+export default class SaveCancel extends React.Component {
     render() {
         const {cancel, handleSubmit} = this.props;
         return (
@@ -17,5 +17,3 @@ class SaveCancel extends React.Component {
         )
     }
 }
-
-export default SaveCancel;
