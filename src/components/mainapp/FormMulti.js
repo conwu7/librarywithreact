@@ -1,7 +1,6 @@
 import React from 'react';
 import {Formik} from 'formik';
 import FormLabelAndFields from '../form/FormLabelAndFields';
-import FormErrors from '../form/FormErrors';
 import SaveCancel from '../form/SaveCancel';
 import * as validateBook from './validation';
 
@@ -29,10 +28,9 @@ class FormMulti extends React.Component {
                 }
             onSubmit = {(values, { setSubmitting }) => {
                 //send values back to App
-                console.log("i reached here")
+                setSubmitting(false);
                 this.props.handleSave(values.title, values.author, values.numPages, values.yearPub, values.bookColor);
                 this.props.handleForm(false, false);
-                setSubmitting(false);
             }}
             validate = {values => {
                 const errors = {}
@@ -55,7 +53,6 @@ class FormMulti extends React.Component {
                             titleError={errors.title} authorError={errors.author}
                             numPagesError={errors.numPages} yearPubError={errors.yearPub}
                         />
-                        <FormErrors errors={errors} touched={touched}/>
                         <SaveCancel cancel={this.onCancel} handleSubmit={handleSubmit}/>
                         </form>
                     )
