@@ -28,10 +28,13 @@ body {
     width: 100px;
 }
 .errorDiv {
-    margin: 15px;
+    display: flex;
+    width: fit-content;
+    margin: 15px auto;
     padding: 10px;
     background-color: yellow;
     font-size: 110%;
+    border: 1px dotted firebrick;
 }
 .newBookContainer button, .formContainer button {
     font-size: 150%;
