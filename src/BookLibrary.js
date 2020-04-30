@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "./components/mainapp/Header";
 import NewBookButton from "./components/mainapp/NewBookButton";
 import Cabinet from "./components/mainapp/Cabinet";
-import FormMulti from "./components/mainapp/FormMulti";
+import FormPopup from "./components/mainapp/FormPopup";
 import {populateBookArray, createNewBook, editBook,
     deleteBook, addNewBook} from "./components/mainapp/ProvideBooksArray";
 
@@ -36,22 +36,28 @@ class BookLibrary extends React.Component{
         );
         addNewBook(this.booksArray, newBook);
     }
+    handleFormOnEdit(book) {
+        this.bookToEdit = book;
+        this.bookToEditClone = {...book};
+        //props for FormPopup
+    }
     handleEditBook(title, author, numPages, yearPub, bookColor) {
+        console.log(this.bookToEdit);
         editBook.apply(this.bookToEdit,[...arguments]);
     }
     handleDeleteBook(indexForStorage) {
         deleteBook(this.booksArray,indexForStorage);
     }
-    handleFormOnEdit(book) {
-        this.bookToEdit = book;
-    }
     handleFormNeeded(isFormNeeded, isCreating) {
+        if (isCreating) this.bookToEditClone = {};
+        // passing empty object here so initial values on form  are set to blank (default)
         this.setState(
              {
-                isFormNeeded: isFormNeeded,
-                isCreating: isCreating,
+                isFormNeeded,
+                isCreating,
             }
         )
+        if (!isFormNeeded) this.bookToEdit = {};
     }
     handleWindowResizing () {
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -74,15 +80,13 @@ class BookLibrary extends React.Component{
         const handleSave = this.handleSaveBook;
         const handleFormOnEdit = this.handleFormOnEdit;
         const handleDelete = this.handleDeleteBook;
-        const isCreating = this.state.isCreating;
-        const isFormNeeded = this.state.isFormNeeded;
-        const bookToEdit = this.bookToEdit
+        const bookToEditClone = this.bookToEditClone;
+        const {isCreating, isFormNeeded} = this.state;
         return (
-            <div className="App" style={{width: window.innerWidth}}>
+            <div className="App" style={{width: window.innerWidth-60}}>
                 <Header />
                 <NewBookButton handleForm={handleForm} isFormNeeded={isFormNeeded}/>
-                <FormMulti handleForm={handleForm} handleSave={handleSave} isFormNeeded={isFormNeeded}
-                           isCreating={isCreating} bookToEdit={bookToEdit}
+                <FormPopup {...{handleForm, handleSave, isFormNeeded, isCreating, bookToEditClone}}
                     />
                 <Cabinet {...{booksArray, handleForm, handleFormOnEdit, isFormNeeded, handleDelete}} />
             </div>

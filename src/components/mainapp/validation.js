@@ -16,7 +16,7 @@ export function validateNumPages(numPages) {
     const notValidNumber = /[\D]{1,7}/g;
     if (isNaN(numPages)) return "Your input for number of pages is not a number"
     return (notValidNumber.test(numPages.toString())) ? "Number of pages should only contain numbers"
-        :  (numPages < 1)? "The number of pages must be 1 or more"
+        :  (numPages < 1)? "The number of pages cannot be 0 and must contain only numbers"
         :  (numPages > 100000)? "That's a lie! No book has more than 100,000 pages"
         :  undefined
 

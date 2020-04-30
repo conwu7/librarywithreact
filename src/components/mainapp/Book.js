@@ -13,6 +13,7 @@ class Book extends React.Component {
         this.props.handleForm(true, false);
     }
     handleDelete() {
+        if (!window.confirm('Are you sure you want to delete this book?')) return
         this.props.handleDelete(this.props.book.indexForStorage);
         this.props.handleDeletedBook();
     }
