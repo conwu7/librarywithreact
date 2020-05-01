@@ -33,7 +33,7 @@ body {
     overflow: scroll;
 }
 .formA {
-
+    box-shadow: 0 0 5px 10px inset rgba(0,0,0, 0.9);;
 }
 .formContainer>* {
     position: relative;
