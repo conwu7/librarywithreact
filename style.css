@@ -35,11 +35,15 @@ body {
 .formA {
     box-shadow: 0 0 5px 10px inset rgba(0,0,0, 0.9);;
 }
+.formA .bookDetails {
+    margin: auto;
+    width: 25vw;
+}
 .formContainer>* {
     position: relative;
     top: 5%;
     height: fit-content;
-    width: 500px;
+    width: 50vw;
     text-align: center;
     background-color: antiquewhite;
     margin:auto;
@@ -106,10 +110,11 @@ button.cancelBtn {
 }
 .bookDetails{
     margin: 10px 20px;
-    border: solid 5px dimgray;
+    padding: 5px;
     border-radius: 10px;
     min-height: 211px;
     transition: all 2s ease-in-out;
+    box-shadow: 0 0 30px black;
 }
 .bookActionContainer {
     max-width: 80%;
@@ -219,6 +224,12 @@ button:after {
 @media only screen and (max-width: 980px) {
     body {
         font-size: 175%;
+    }
+    .formA .bookDetails {
+        width: 40vw;
+    }
+    .formContainer>* {
+        width: 80vw;
     }
     label {
         font-size: 130%;
