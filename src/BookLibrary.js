@@ -42,7 +42,6 @@ class BookLibrary extends React.Component{
         //props for FormPopup
     }
     handleEditBook(title, author, numPages, yearPub, bookColor) {
-        console.log(this.bookToEdit);
         editBook.apply(this.bookToEdit,[...arguments]);
     }
     handleDeleteBook(indexForStorage) {
