@@ -16,6 +16,9 @@ body {
 .newBookContainer, .formContainer {
     text-align: center;
 }
+.newBookContainer {
+    margin-bottom: 30px;
+}
 .formContainer .newBookContainer {
     padding: 0 50px 50px;
     border-bottom-left-radius: 50px;
@@ -23,7 +26,7 @@ body {
 }
 .formContainer {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     top: 0;
     left: 0;
     width:100%;
@@ -110,11 +113,14 @@ button.cancelBtn {
 }
 .bookDetails{
     margin: 10px 20px;
-    padding: 5px;
+    padding: 5px 15px;
     border-radius: 10px;
     min-height: 211px;
-    transition: all 2s ease-in-out;
+    transition: all 500ms ease-in-out;
     box-shadow: 0 0 30px black;
+    z-index: 5;
+    position: relative;
+    cursor: pointer;
 }
 .bookActionContainer {
     max-width: 80%;
@@ -191,6 +197,9 @@ button img {
 button {
     outline: none;
 }
+button:not(.deleteBtn) {
+    box-shadow: 0 0 7px black;
+}
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     cursor: pointer;
@@ -244,6 +253,9 @@ button:after {
     }
     h2 {
         max-height: 150px;
+    }
+    .bookActionContainer {
+        margin-top: 30px;
     }
     button.editBtn, button.readBtn, button.deleteBtn {
         font-size: 100%;
