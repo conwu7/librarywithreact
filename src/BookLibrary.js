@@ -37,6 +37,7 @@ class BookLibrary extends React.Component{
         addNewBook(this.booksArray, newBook);
     }
     handleFormOnEdit(book) {
+        if (this.state.isFormNeeded) return;
         this.bookToEdit = book;
         this.bookToEditClone = {...book};
         //props for FormPopup

@@ -9,8 +9,9 @@ class BookDetails extends React.Component {
         return (
            <div className={'bookDetails'} style={{backgroundColor: bookColor, color: textColorToUse}}
                 onClick={(event => {
-                    const scale = event.target.classList.contains('bookDetails') ? event.target : event.target.parentElement;
-                    scale.style.transform = scale.style.transform === 'scale(1.5)' ? 'scale(1)' : 'scale(1.5)';
+                    let element = event.target;
+                    while (!element.classList.contains('bookDetails')) element = element.parentElement;
+                    element.style.transform = element.style.transform === 'scale(1.5)' ? 'scale(1)' : 'scale(1.5)';
                     event.preventDefault();
                 })}
            >
