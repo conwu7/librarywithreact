@@ -2,6 +2,9 @@
     font-family: 'Kulim Park', sans-serif;
     touch-action: manipulation;
 }
+html {
+    min-width: 600px;
+}
 .App {
 
 }
@@ -10,8 +13,8 @@ body {
     background-blend-mode: color-burn;
     margin: 0;
     min-height: calc(100vh - 70px);
-    border: 35px inset indianred;
-    background: linear-gradient(antiquewhite, coral);
+    border: 35px inset rgba(205,92,92,0.8);
+    background: linear-gradient(antiquewhite, floralwhite);
     box-shadow: 0 0 50px inset black;
 }
 .newBookContainer, .formContainer {
@@ -33,11 +36,13 @@ body {
     width:100%;
     height: 100%;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
+    background-color: rgba(0,0,0, 0.4);
     overflow: scroll;
 }
 .formA {
-    box-shadow: 0 0 5px 10px inset rgba(0,0,0, 0.9);;
+    box-shadow: 0 0 5px 10px rgba(0,0,0, 0.4);;
+    max-width: 500px;
+    border-radius: 15px;
 }
 .formA .bookDetails {
     margin: auto;
@@ -60,6 +65,9 @@ body {
     border-top-left-radius: 50px;
     padding: 50px;
 }
+.formTitle .bookDetails {
+    max-width: 275px;
+}
 .formContainer .formWrapper {
     padding: 0 50px;
 }
@@ -81,6 +89,7 @@ body {
     margin: 15px auto;
     padding: 10px;
     background-color: yellow;
+    color: red;
     font-size: 110%;
     border: 1px dotted firebrick;
 }
@@ -106,7 +115,10 @@ button.cancelBtn {
     justify-content: center;
     border-radius: 15px;
     padding: 50px;
-    /* something's messing up with min-width */
+    border-top: 20px inset rgba(205,92,92,0.4);
+    border-top-width: thick;
+    position: relative;
+    left: -6px;
 }
 .bookContainer {
 
@@ -134,6 +146,7 @@ h1,h2, h3, h4, h5, h6 {
 }
 h1 {
     font-size: 400%;
+    color: darkslategray;
 }
 h2 {
     max-height: 85px;
@@ -233,12 +246,16 @@ button:after {
 @media only screen and (max-width: 980px) {
     body {
         font-size: 175%;
+        min-width: 600px;
     }
     .formA .bookDetails {
         width: 40vw;
     }
     .formContainer>* {
         width: 80vw;
+    }
+    .formTitle .bookDetails {
+        max-width: 350px;
     }
     label {
         font-size: 130%;
