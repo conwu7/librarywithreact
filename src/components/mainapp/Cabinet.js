@@ -33,9 +33,9 @@ class Cabinet extends React.Component {
             <div className='cabinet'>
                 {
                     books.map(book => (
-                        <Book key={book.indexForStorage} {...{handleForm, handleFormOnEdit, handleDelete, isFormNeeded}}
-                        book={book} handleDeletedBook={this.handleDeletedBook} setDragElement={this.setDragElement}
-                              draggedElementId={this.state.draggedElementId}
+                        <Book  key={book.indexForStorage} {...{handleForm, handleFormOnEdit, handleDelete, isFormNeeded}}
+                               book={book} handleDeletedBook={this.handleDeletedBook} setDragElement={this.setDragElement}
+                               draggedElementId={this.state.draggedElementId}
                         />
                     ))
                 }

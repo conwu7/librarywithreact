@@ -46,13 +46,13 @@ class Book extends React.Component {
         )
     }
     handleDragStart(e) {
-        e.preventDefault();
-        if (this.state.confirmDeleteNeeded) return
+        if (this.state.confirmDeleteNeeded || e.target.tagName === 'IMG') return
         e.target.style.opacity = '0.2';
         this.props.setDragElement(e.target.id);
         e.dataTransfer.setData('text',e.target.firstElementChild.firstChild.textContent)
     }
     handleDragEnd(e) {
+        e.preventDefault();
         e.target.style.opacity = "1";
     }
     handleDragEnter(e) {
