@@ -17,18 +17,18 @@ body {
     background: linear-gradient(antiquewhite, floralwhite);
     box-shadow: 0 0 50px inset black;
 }
-.newBookContainer, .formContainer {
+.newBookContainer, .formContainer, .confirmDeleteContainer {
     text-align: center;
 }
 .newBookContainer {
     margin-bottom: 30px;
 }
-.formContainer .newBookContainer {
+.formContainer .newBookContainer, .confirmDeleteContainer {
     padding: 0 50px 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
-.formContainer {
+.formContainer, .confirmDeleteContainer {
     position: fixed;
     z-index: 10;
     top: 0;
@@ -48,7 +48,7 @@ body {
     margin: auto;
     width: 25vw;
 }
-.formContainer>* {
+.formContainer>*, .confirmDeleteContainer {
     position: relative;
     top: 5%;
     height: fit-content;
