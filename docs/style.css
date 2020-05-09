@@ -23,14 +23,22 @@ body {
 .newBookContainer {
     margin-bottom: 30px;
 }
-.formContainer .newBookContainer, .confirmDeleteContainer {
+.formContainer .newBookContainer {
     padding: 0 50px 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
+.formContainer .formTitle {
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+    padding: 50px;
+}
+.confirmDeleteContainer .formTitle {
+    color: firebrick;
+}
 .formContainer, .confirmDeleteContainer {
     position: fixed;
-    z-index: 10;
+    z-index: 100;
     top: 0;
     left: 0;
     width:100%;
@@ -38,6 +46,12 @@ body {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0, 0.4);
     overflow: scroll;
+}
+.confirmDeleteWrapper {
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 30px 0;
+    border-radius: 20px;
 }
 .formA {
     box-shadow: 0 0 5px 10px rgba(0,0,0, 0.4);;
@@ -48,7 +62,12 @@ body {
     margin: auto;
     width: 25vw;
 }
-.formContainer>*, .confirmDeleteContainer {
+.confirmDeleteContainer .bookDetails {
+    width: 50%;
+    margin: 40px auto 0;
+
+}
+.formContainer>* {
     position: relative;
     top: 5%;
     height: fit-content;
@@ -57,14 +76,29 @@ body {
     background-color: antiquewhite;
     margin:auto;
 }
+.confirmDeleteWrapper {
+    width: 35vw;
+    margin: auto;
+    position: relative;
+    top: 5%;
+    height: fit-content;
+    text-align: center;
+    background-color: antiquewhite;
+}
+.confirmDeleteWrapper>* {
+    position: relative;
+    height: fit-content;
+    text-align: center;
+    background-color: antiquewhite;
+    margin:auto;
+}
 .formContainer .saveCancelContainer {
     padding: 35px 50px;
 }
-.formContainer .formTitle {
-    border-top-right-radius: 50px;
-    border-top-left-radius: 50px;
-    padding: 50px;
+.confirmDeleteContainer .confirmDeleteButtonContainer {
+    padding: 30px 30px 0;
 }
+
 .formTitle .bookDetails {
     max-width: 275px;
 }
@@ -93,14 +127,15 @@ body {
     font-size: 110%;
     border: 1px dotted firebrick;
 }
-.newBookContainer button, .formContainer button {
+.newBookContainer button, .formContainer button, .confirmDeleteContainer button {
     font-size: 150%;
     margin: 15px 30px;
     background-color: lightblue;
     border-radius: 10px;
     padding: 10px;
 }
-button.cancelBtn {
+button.cancelBtn, button.yesDelete {
+    color: antiquewhite;
     background-color: firebrick;
     opacity: 0.7;
 }
@@ -273,6 +308,13 @@ button:after {
     }
     .bookActionContainer {
         margin-top: 30px;
+    }
+    .confirmDeleteWrapper {
+        top: 25%;
+        width: 70vw;
+    }
+    .confirmDeleteContainer .confirmDeleteButtonContainer {
+        padding: 50px 30px 0;
     }
     button.editBtn, button.readBtn, button.deleteBtn {
         font-size: 100%;
