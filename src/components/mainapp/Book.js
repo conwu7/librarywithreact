@@ -73,7 +73,7 @@ class Book extends React.Component {
         const {book, isFormNeeded} = this.props;
         return (
             <div id={'book'+book.indexForStorage} className='bookContainer' onDragStart={this.handleDragStart}
-                 draggable={'true'}
+                 draggable={!this.state.confirmDeleteNeeded && 'true'}
                  onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDrop={this.handleDrop}
                  onDragEnter={this.handleDragEnter}
             >
