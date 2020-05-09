@@ -5,14 +5,23 @@ class Cabinet extends React.Component {
     constructor(props) {
         super(props);
         this.handleDeletedBook = this.handleDeletedBook.bind(this);
+        this.setDragElement = this.setDragElement.bind(this);
         this.state = {
-            numberOfBooks: this.props.booksArray.length
+            numberOfBooks: this.props.booksArray.length,
+            draggedElementId: ''
         }
     }
     handleDeletedBook() {
         this.setState(
             {
                 numberOfBooks: this.props.booksArray.length
+            }
+        )
+    }
+    setDragElement(id) {
+        this.setState(
+            {
+                draggedElementId: id
             }
         )
     }
@@ -25,7 +34,8 @@ class Cabinet extends React.Component {
                 {
                     books.map(book => (
                         <Book key={book.indexForStorage} {...{handleForm, handleFormOnEdit, handleDelete, isFormNeeded}}
-                        book={book} handleDeletedBook={this.handleDeletedBook}
+                        book={book} handleDeletedBook={this.handleDeletedBook} setDragElement={this.setDragElement}
+                              draggedElementId={this.state.draggedElementId}
                         />
                     ))
                 }

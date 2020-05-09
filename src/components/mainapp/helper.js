@@ -38,4 +38,17 @@ export function isContrastLow(colorOne, darkerColor) { //colorTwo should be the 
     let contrast =  (l1 + 0.05) / (l2 + 0.05);
     return (contrast < 4.5);
 }
+export function moveStuffAround(e, id) {
+    let dropTarget = e.target;
+    const draggedElement = document.getElementById(id);
+    for (let i=0; i<4; i++) {
+        if (dropTarget.draggable && dropTarget.tagName !== 'IMG') break;
+        dropTarget = dropTarget.parentElement;
+    }
+    if (draggedElement.compareDocumentPosition(dropTarget) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        dropTarget.parentElement.insertBefore(draggedElement, dropTarget.nextSibling); //
+    } else {
+        dropTarget.parentElement.insertBefore(draggedElement, dropTarget)
+    }
+}
 

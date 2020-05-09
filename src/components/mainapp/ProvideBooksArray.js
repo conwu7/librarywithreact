@@ -6,26 +6,41 @@ function populateBookArray() {
     const bookArray = [];
     if (localStorage.getItem('storageIndexReact')) {
         bookArray.indexForStorage = localStorage.getItem('storageIndexReact');
-        for (let i=0; i < localStorage.length; i++) {
-            let keyLS = localStorage.key(i);
-            if (!keyLS.includes('REACTBK')) {continue}
-            let objDeConverted = JSON.parse(localStorage.getItem(keyLS));
-            bookArray.push(objDeConverted);
+        if (localStorage.getItem('ReactBookSort')) {
+            const customSort = JSON.parse(localStorage.getItem('ReactBookSort'));
+            const length = customSort.length;
+            for (let i = 0; i < length; i++) {
+                bookArray.push(JSON.parse(localStorage.getItem('REACTBK' + customSort[i])))
+            }
+        } else {
+            for (let i = 0; i < localStorage.length; i++) {
+                let keyLS = localStorage.key(i);
+                if (!keyLS.includes('REACTBK')) {
+                    continue
+                }
+                let objDeConverted = JSON.parse(localStorage.getItem(keyLS));
+                bookArray.push(objDeConverted);
+            }
         }
     } else {
         bookArray.indexForStorage = 0;
-        let book1 = createNewBook('Flowers for Algernon','Daniel Keyes',
-            234, 1958, "#008b8b",bookArray);
-        let book2 = createNewBook('If I stay', 'Gayle Forman',
-            360, 2009, "#b8860b",bookArray);
-        bookArray.push(book1,book2);
-        helper.updateLocalStorageBook(book1);
-        helper.updateLocalStorageBook(book2);
+        createMockBooks(bookArray);
     }
-    bookArray.sort(function(a, b) {
-        return a.indexForStorage - b.indexForStorage;
-    });
+    if (!localStorage.getItem('ReactBookSort')) {
+        bookArray.sort(function(a, b) {
+            return a.indexForStorage - b.indexForStorage;
+        })
+    }
     return bookArray;
+}
+function createMockBooks(bookArray) {
+    let book1 = createNewBook('Flowers for Algernon','Daniel Keyes',
+        234, 1958, "#008b8b",bookArray);
+    let book2 = createNewBook('If I stay', 'Gayle Forman',
+        360, 2009, "#b8860b",bookArray);
+    bookArray.push(book1,book2);
+    helper.updateLocalStorageBook(book1);
+    helper.updateLocalStorageBook(book2);
 }
 
 function createNewBook(title, author, numPages, yearPub, bookColor, bookArray) {
@@ -48,7 +63,6 @@ function addNewBook(booksArray, bookObj) {
 function deleteBook(booksArray, indexForStorage) {
     const bookArrayIndex = booksArray.findIndex(obj => Number(obj.indexForStorage) === Number(indexForStorage));
     helper.removeLocalStorageBook(booksArray[bookArrayIndex]);
-    console.log(bookArrayIndex);
     booksArray.splice(bookArrayIndex,1);
 
 }
@@ -60,9 +74,13 @@ function editBook(title, author, numPages, yearPub, bookColor) {
     this.bookColor = bookColor;
     helper.updateLocalStorageBook(this);
 }
-function toggleReadStatus(bool) {
-    this.read = bool;
+function getAndSaveSort(indexForStorage) {
+    const sortArray = [...document.getElementsByClassName('bookContainer')].reduce((sortArray,currentBook)=>(
+        [...sortArray, currentBook.id.slice(4)]
+    ),[])
+    if (indexForStorage) sortArray.splice(sortArray.indexOf(indexForStorage.toString()),1);
+    localStorage.setItem('ReactBookSort',JSON.stringify(sortArray))
 }
 
-export {populateBookArray, addNewBook, createNewBook, deleteBook, editBook, toggleReadStatus};
+export {populateBookArray, addNewBook, createNewBook, deleteBook, editBook, getAndSaveSort};
 

@@ -4,7 +4,7 @@ import NewBookButton from "./components/mainapp/NewBookButton";
 import Cabinet from "./components/mainapp/Cabinet";
 import FormPopup from "./components/mainapp/FormPopup";
 import {populateBookArray, createNewBook, editBook,
-    deleteBook, addNewBook} from "./components/mainapp/ProvideBooksArray";
+    deleteBook, addNewBook, getAndSaveSort} from "./components/mainapp/ProvideBooksArray";
 
 class BookLibrary extends React.Component{
     constructor(props) {
@@ -47,6 +47,7 @@ class BookLibrary extends React.Component{
     }
     handleDeleteBook(indexForStorage) {
         deleteBook(this.booksArray,indexForStorage);
+        getAndSaveSort(indexForStorage);
     }
     handleFormNeeded(isFormNeeded, isCreating) {
         if (isCreating) this.bookToEditClone = {};
