@@ -16,11 +16,14 @@ class BookLibrary extends React.Component{
         this.handleDeleteBook = this.handleDeleteBook.bind(this);
         this.handleFormNeeded = this.handleFormNeeded.bind(this);
         this.handleFormOnEdit = this.handleFormOnEdit.bind(this);
+        this.handleTheme = this.handleTheme.bind(this);
+        this.themeCallBack = this.themeCallBack.bind(this);
         this.state = {
             isCreating: false,
             isFormNeeded: false,
             windowHeight: window.innerHeight,
-            windowWidth: window.innerWidth
+            windowWidth: window.innerWidth,
+            darkMode: false
         }
     }
     handleSaveBook(title, author, numPages, yearPub, bookColor) {
@@ -71,6 +74,28 @@ class BookLibrary extends React.Component{
             }
         )
     }
+    handleTheme () {
+        this.setState(prevState => (
+            {
+                darkMode: !prevState.darkMode
+            }
+            ),this.themeCallBack
+        )
+    }
+    themeCallBack () {
+        const body = document.querySelector('body');
+        const pageHeader = document.querySelector('.header');
+        const darkModeCircle = document.querySelector('.darkModeCircle');
+        if (this.state.darkMode) {
+            body.style.backgroundColor = 'darkslategray';
+            pageHeader.style.color = 'antiquewhite';
+            darkModeCircle.classList.add('darkOn')
+        } else {
+            body.style.backgroundColor = 'whitesmoke';
+            pageHeader.style.color = 'darkslategray';
+            darkModeCircle.classList.remove('darkOn')
+        }
+    }
     componentDidMount() {
         window.addEventListener('resize',this.handleWindowResizing.bind(this));
     }
@@ -84,7 +109,13 @@ class BookLibrary extends React.Component{
         const bookToEditClone = this.bookToEditClone;
         const {isCreating, isFormNeeded} = this.state;
         return (
-            <div className="App" style={{width: window.innerWidth-60}}>
+            <div className="App" style={{width: window.innerWidth}}>
+                <div className='darkModeToggle'>
+                    <div className='darkModeItemWrapper'>
+                        <div className='darkModeLine' onClick={this.handleTheme}>{null}</div>
+                        <div className='darkModeCircle' onClick={this.handleTheme}>{null}</div>
+                    </div>
+                </div>
                 <Header />
                 <NewBookButton handleForm={handleForm} isFormNeeded={isFormNeeded}/>
                 <FormPopup {...{handleForm, handleSave, isFormNeeded, isCreating, bookToEditClone}}
