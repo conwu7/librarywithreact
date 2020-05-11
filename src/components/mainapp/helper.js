@@ -51,4 +51,10 @@ export function moveStuffAround(e, id) {
         dropTarget.parentElement.insertBefore(draggedElement, dropTarget)
     }
 }
+export function saveDarkModeSetting(darkModeBool) {
+    localStorage.setItem('darkMode',JSON.stringify(darkModeBool))
+}
+export function getDarkModeSetting() {
+    return JSON.parse(localStorage.getItem('darkMode'))
+}
 

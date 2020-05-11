@@ -5,6 +5,7 @@ import Cabinet from "./components/mainapp/Cabinet";
 import FormPopup from "./components/mainapp/FormPopup";
 import {populateBookArray, createNewBook, editBook,
     deleteBook, addNewBook, getAndSaveSort} from "./components/mainapp/ProvideBooksArray";
+import {getDarkModeSetting, saveDarkModeSetting} from "./components/mainapp/helper";
 
 class BookLibrary extends React.Component{
     constructor(props) {
@@ -16,14 +17,14 @@ class BookLibrary extends React.Component{
         this.handleDeleteBook = this.handleDeleteBook.bind(this);
         this.handleFormNeeded = this.handleFormNeeded.bind(this);
         this.handleFormOnEdit = this.handleFormOnEdit.bind(this);
-        this.handleTheme = this.handleTheme.bind(this);
-        this.themeCallBack = this.themeCallBack.bind(this);
+        this.handleThemeToggle = this.handleThemeToggle.bind(this);
+        this.handleUpdatedTheme = this.handleUpdatedTheme.bind(this);
         this.state = {
             isCreating: false,
             isFormNeeded: false,
             windowHeight: window.innerHeight,
             windowWidth: window.innerWidth,
-            darkMode: false
+            darkMode: getDarkModeSetting() || false
         }
     }
     handleSaveBook(title, author, numPages, yearPub, bookColor) {
@@ -74,15 +75,16 @@ class BookLibrary extends React.Component{
             }
         )
     }
-    handleTheme () {
+    handleThemeToggle () {
         this.setState(prevState => (
             {
                 darkMode: !prevState.darkMode
             }
-            ),this.themeCallBack
+            ),this.handleUpdatedTheme
         )
     }
-    themeCallBack () {
+    handleUpdatedTheme () {
+        saveDarkModeSetting(this.state.darkMode);
         const body = document.querySelector('body');
         const pageHeader = document.querySelector('.header');
         const darkModeCircle = document.querySelector('.darkModeCircle');
@@ -98,6 +100,7 @@ class BookLibrary extends React.Component{
     }
     componentDidMount() {
         window.addEventListener('resize',this.handleWindowResizing.bind(this));
+        this.handleUpdatedTheme();
     }
 
     render() {
@@ -112,8 +115,8 @@ class BookLibrary extends React.Component{
             <div className="App" style={{width: window.innerWidth}}>
                 <div className='darkModeToggle'>
                     <div className='darkModeItemWrapper'>
-                        <div className='darkModeLine' onClick={this.handleTheme}>{null}</div>
-                        <div className='darkModeCircle' onClick={this.handleTheme}>{null}</div>
+                        <div className='darkModeLine' onClick={this.handleThemeToggle}>{null}</div>
+                        <div className='darkModeCircle' onClick={this.handleThemeToggle}>{null}</div>
                     </div>
                 </div>
                 <Header />
