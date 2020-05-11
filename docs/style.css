@@ -6,16 +6,68 @@ html {
     min-width: 600px;
 }
 .App {
-
+    position: relative;
+}
+.header {
+    color: darkslategray;
+}
+.darkModeToggle {
+    position: absolute;
+    right: 0;
+    height: 50px;
+    width: 200px;
+}
+.darkModeItemWrapper {
+    position: relative;
+    height: 100%;
+}
+.darkModeLine {
+    position: absolute;
+    height: 1em;
+    width: 2em;
+    border-radius: .5em;
+    background-color: lightgray;
+    cursor: pointer;
+}
+.darkModeCircle {
+    position: absolute;
+    height: 1.5em;
+    width: 1.5em;
+    top: -.25em;
+    transition: all 300ms linear;
+    border-radius: 50%;
+    background-color: burlywood;
+    cursor: pointer;
+    left: 0;
+    animation: turnLight 300ms linear;
+    z-index: 1;
+}
+.darkModeCircle.darkOn {
+    background-color: firebrick;
+    left: .5em;
+    animation: turnDark 300ms linear;
+}
+@keyframes turnDark {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: .5em;
+    }
+}
+@keyframes turnLight {
+    0% {
+        left: .5em;
+    }
+    100% {
+        left: 0;
+    }
 }
 body {
-    background-size: cover;
-    background-blend-mode: color-burn;
     margin: 0;
-    min-height: calc(100vh - 70px);
-    border: 35px inset rgba(205,92,92,0.8);
-    background: linear-gradient(antiquewhite, floralwhite);
-    box-shadow: 0 0 50px inset black;
+    min-height: 100vh;
+    background-color: whitesmoke;
+    transition: background-color 500ms ease-in-out;
 }
 .newBookContainer, .formContainer, .confirmDeleteContainer {
     text-align: center;
@@ -54,8 +106,8 @@ body {
     border-radius: 20px;
 }
 .formA {
-    box-shadow: 0 0 5px 10px rgba(0,0,0, 0.4);;
-    max-width: 500px;
+    box-shadow: 0 0 5px 10px rgba(0,0,0, 0.4);
+    max-width: 80vw;
     border-radius: 15px;
 }
 .formA .bookDetails {
@@ -139,6 +191,9 @@ button.cancelBtn, button.yesDelete {
     background-color: firebrick;
     opacity: 0.7;
 }
+.confirmDeleteButtonContainer>* {
+    width: 50%;
+}
 .cabinet {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
@@ -150,10 +205,9 @@ button.cancelBtn, button.yesDelete {
     justify-content: center;
     border-radius: 15px;
     padding: 50px;
-    border-top: 20px inset rgba(205,92,92,0.4);
+    border-top: 20px inset rgba(47, 79, 79, 0.4);
     border-top-width: thick;
     position: relative;
-    left: -6px;
 }
 .bookContainer {
 
@@ -181,7 +235,6 @@ h1,h2, h3, h4, h5, h6 {
 }
 h1 {
     font-size: 400%;
-    color: darkslategray;
 }
 h2 {
     max-height: 85px;
@@ -283,14 +336,30 @@ button:after {
         font-size: 175%;
         min-width: 600px;
     }
-    .formA .bookDetails {
-        width: 40vw;
+    .darkModeToggle {
+        width: 75px;
     }
-    .formContainer>* {
+    .formA {
         width: 80vw;
+        text-align: center;
+    }
+    .formA .bookDetails {
+        width: 70vw;
+    }
+    .formA>* {
+        width: 70vw;
     }
     .formTitle .bookDetails {
-        max-width: 350px;
+        max-width: 500px;
+    }
+    .formWrapper input {
+        width: 250px;
+        margin: 20px 0;
+    }
+    .formWrapper label {
+        text-align: right;
+        width: 150px;
+        margin: 20px 20px 20px 0;
     }
     label {
         font-size: 130%;
