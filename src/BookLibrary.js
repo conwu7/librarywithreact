@@ -24,7 +24,8 @@ class BookLibrary extends React.Component{
             isFormNeeded: false,
             windowHeight: window.innerHeight,
             windowWidth: window.innerWidth,
-            darkMode: getDarkModeSetting() || false
+            darkMode: getDarkModeSetting() || false,
+            themeToggleClicked: false
         }
     }
     handleSaveBook(title, author, numPages, yearPub, bookColor) {
@@ -76,6 +77,11 @@ class BookLibrary extends React.Component{
         )
     }
     handleThemeToggle () {
+        if (!this.state.themeToggleClicked) {
+            document.querySelector('.darkModeCircle')
+                .style.animationDuration = '300ms';
+            this.setState({themeToggleClicked: true})
+        }
         this.setState(prevState => (
             {
                 darkMode: !prevState.darkMode
@@ -93,7 +99,7 @@ class BookLibrary extends React.Component{
             pageHeader.style.color = 'antiquewhite';
             darkModeCircle.classList.add('darkOn')
         } else {
-            body.style.backgroundColor = 'whitesmoke';
+            body.style.backgroundColor = 'antiquewhite';
             pageHeader.style.color = 'darkslategray';
             darkModeCircle.classList.remove('darkOn')
         }
