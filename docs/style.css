@@ -424,7 +424,7 @@ button:after {
         width: 70vw;
     }
     .bookDetails {
-        padding-bottom: 15px;
+        padding-bottom: 75px;
     }
     .formA>* {
         width: 70vw;
@@ -453,7 +453,11 @@ button:after {
         font-size: 300%;
     }
     h2 {
-        max-height: 150px;
+        font-size: 1.7em;
+        max-height: 200px;
+    }
+    h4, h5 {
+        font-size: 1.2em;
     }
     .bookActionContainer {
         margin-top: 30px;
@@ -481,7 +485,7 @@ button:after {
         width: 100%;
     }
     .menu-icon {
-        width: 50px;
+        width: 75px;
     }
     .menu-button {
         font-size: 1.3em;
