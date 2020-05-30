@@ -46,7 +46,7 @@ export default class BookDetails extends React.Component {
                 <h5>{book.numPages} <span>pages</span></h5>
                 <h5><span className={'prefixValues'}>Published in </span>{book.yearPub}</h5>
                 {showMenuIcon &&
-                <div class='book-menu-container'>
+                <div className='book-menu-container'>
                     <div className={'menu-icon-container'+(this.state.menuExpanded?' active':'')}>
                         <img draggable={false} src={menuIcon} alt='Menu Icon' className='menu-icon'
                             onClick={this.handleMenu} style={{cursor: sortMode?'inherit':'pointer'}}/>
