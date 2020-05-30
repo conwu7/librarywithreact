@@ -230,7 +230,7 @@ button.cancelBtn, button.yesDelete {
     border-radius: 10px;
     min-height: 211px;
     transition: all 500ms ease-in-out;
-    box-shadow: 0 0 30px black;
+    box-shadow: 0 0 30px -10px black;
     z-index: 5;
     position: relative;
 }
