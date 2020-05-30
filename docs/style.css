@@ -492,6 +492,9 @@ button:after {
         height: 100px;
         padding: 10px 0;
     }
+    button:hover {
+        transform: scale(1);
+    }
     .menu-button:first-child {
         border-bottom: 2px solid black;
     }
