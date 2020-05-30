@@ -19,13 +19,15 @@ class BookLibrary extends React.Component{
         this.handleFormOnEdit = this.handleFormOnEdit.bind(this);
         this.handleThemeToggle = this.handleThemeToggle.bind(this);
         this.handleUpdatedTheme = this.handleUpdatedTheme.bind(this);
+        this.handleSortMode = this.handleSortMode.bind(this);
         this.state = {
             isCreating: false,
             isFormNeeded: false,
             windowHeight: window.innerHeight,
             windowWidth: window.innerWidth,
             darkMode: getDarkModeSetting() || false,
-            themeToggleClicked: false
+            themeToggleClicked: false,
+            sortMode: false
         }
     }
     handleSaveBook(title, author, numPages, yearPub, bookColor) {
@@ -104,6 +106,11 @@ class BookLibrary extends React.Component{
             darkModeCircle.classList.remove('darkOn')
         }
     }
+    handleSortMode() {
+        this.setState(prevState=>({
+            sortMode: !prevState.sortMode
+        }))
+    }
     componentDidMount() {
         window.addEventListener('resize',this.handleWindowResizing.bind(this));
         this.handleUpdatedTheme();
@@ -116,7 +123,7 @@ class BookLibrary extends React.Component{
         const handleFormOnEdit = this.handleFormOnEdit;
         const handleDelete = this.handleDeleteBook;
         const bookToEditClone = this.bookToEditClone;
-        const {isCreating, isFormNeeded} = this.state;
+        const {isCreating, isFormNeeded, sortMode} = this.state;
         return (
             <div className="App" style={{width: window.innerWidth}}>
                 <div className='darkModeToggle'>
@@ -124,12 +131,17 @@ class BookLibrary extends React.Component{
                         <div className='darkModeLine' onClick={this.handleThemeToggle}>{null}</div>
                         <div className='darkModeCircle' onClick={this.handleThemeToggle}>{null}</div>
                     </div>
+                    <div className={'sort-mode-toggle'+ (sortMode?' active':'')}>
+                        <button type='button' className='sort-mode-btn' onClick={this.handleSortMode}>
+                            {this.state.sortMode?'Turn Off Sort Mode':'Sort Books'}
+                        </button>
+                    </div>
                 </div>
                 <Header />
                 <NewBookButton handleForm={handleForm} isFormNeeded={isFormNeeded}/>
                 <FormPopup {...{handleForm, handleSave, isFormNeeded, isCreating, bookToEditClone}}
                     />
-                <Cabinet {...{booksArray, handleForm, handleFormOnEdit, isFormNeeded, handleDelete}} />
+                <Cabinet {...{booksArray, handleForm, handleFormOnEdit, isFormNeeded, handleDelete, sortMode}} />
             </div>
         );
     }

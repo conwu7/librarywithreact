@@ -27,6 +27,7 @@ class Cabinet extends React.Component {
     }
     render() {
         const books = this.props.booksArray;
+        const sortMode = this.props.sortMode;
         if (books.length < 1) return null;
         const {handleForm, handleFormOnEdit, handleDelete, isFormNeeded} = this.props
         return (
@@ -35,7 +36,7 @@ class Cabinet extends React.Component {
                     books.map(book => (
                         <Book  key={book.indexForStorage} {...{handleForm, handleFormOnEdit, handleDelete, isFormNeeded}}
                                book={book} handleDeletedBook={this.handleDeletedBook} setDragElement={this.setDragElement}
-                               draggedElementId={this.state.draggedElementId}
+                               draggedElementId={this.state.draggedElementId} sortMode={sortMode}
                         />
                     ))
                 }

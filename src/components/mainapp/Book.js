@@ -1,6 +1,6 @@
 import React from 'react';
 import BookDetails from "./BookDetails";
-import BookAction from "./BookAction";
+// import BookAction from "./BookAction";
 import {getAndSaveSort} from "./ProvideBooksArray";
 import {moveStuffAround} from "./helper";
 import {animated, useTransition} from "react-spring";
@@ -12,6 +12,9 @@ class Book extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleDragStart = this.handleDragStart.bind(this);
         this.handleDragEnter = this.handleDragEnter.bind(this);
+        this.handleDragOver = this.handleDragOver.bind(this);
+        this.handleDragEnd = this.handleDragEnd.bind(this);
+        this.handleDrop = this.handleDrop.bind(this);
         this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
         this.handleCancelDelete = this.handleCancelDelete.bind(this);
         this.state = {
@@ -46,41 +49,50 @@ class Book extends React.Component {
         )
     }
     handleDragStart(e) {
+        if (!this.props.sortMode) return;
         if (this.state.confirmDeleteNeeded || e.target.tagName === 'IMG') return
         e.target.style.opacity = '0.2';
         this.props.setDragElement(e.target.id);
         e.dataTransfer.setData('text',e.target.firstElementChild.firstChild.textContent)
     }
     handleDragEnd(e) {
+        if (!this.props.sortMode) return;
         e.preventDefault();
         e.target.style.opacity = "1";
     }
     handleDragEnter(e) {
         e.preventDefault();
+        if (!this.props.sortMode) return;
         moveStuffAround(e, this.props.draggedElementId);
         getAndSaveSort();
     }
     handleDragOver(e) {
         e.preventDefault();
+        if (!this.props.sortMode) return;
     }
     handleDrop(e) {
         e.preventDefault();
+        if (!this.props.sortMode) return;
     }
     componentDidMount() {
         getAndSaveSort();
     }
     render() {
-        const {book, isFormNeeded} = this.props;
+        const {book, isFormNeeded, sortMode} = this.props;
         return (
             <div id={'book'+book.indexForStorage} className='bookContainer' onDragStart={this.handleDragStart}
-                 draggable={!this.state.confirmDeleteNeeded && 'true'}
+                 draggable={sortMode && (!this.state.confirmDeleteNeeded && 'true')}
                  onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDrop={this.handleDrop}
                  onDragEnter={this.handleDragEnter}
             >
-                <BookDetails book={book}/>
-                <BookAction book={book} onEditClick={this.onEditClick} isFormNeeded={isFormNeeded}
-                handleDelete={this.handleDelete}
+                <BookDetails book={book} showMenuIcon={true}
+                             onEditClick={this.onEditClick} isFormNeeded={isFormNeeded}
+                             handleDelete={this.handleDelete} sortMode={sortMode}
                 />
+                {/*{ temporarily remove book action*/}
+                { /*<BookAction book={book} onEditClick={this.onEditClick} isFormNeeded={isFormNeeded}
+                handleDelete={this.handleDelete}
+                />*/}
                 <ConfirmDeletePopup confirmDeleteNeeded={this.state.confirmDeleteNeeded}
                 handleConfirmDelete={this.handleConfirmDelete}
                 handleCancelDelete={this.handleCancelDelete} book={book}

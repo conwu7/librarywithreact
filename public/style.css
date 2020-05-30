@@ -14,7 +14,7 @@ html {
 .darkModeToggle {
     position: absolute;
     right: 0;
-    top: 35px;
+    top: 100px;
     height: 50px;
     width: 200px;
 }
@@ -48,6 +48,18 @@ html {
     background-color: firebrick;
     left: .5em;
     animation: turnDark linear;
+}
+.sort-mode-toggle {
+    position: relative;
+    left: -75px;
+}
+.sort-mode-toggle.active .sort-mode-btn {
+    background-color: yellow;
+}
+.sort-mode-btn {
+    border-radius: 5px;
+    font-size: 1.2em;
+    background-color: antiquewhite;
 }
 @keyframes turnDark {
     0% {
@@ -218,7 +230,6 @@ button.cancelBtn, button.yesDelete {
     box-shadow: 0 0 30px black;
     z-index: 5;
     position: relative;
-    cursor: pointer;
 }
 .bookActionContainer {
     max-width: 80%;
@@ -252,6 +263,38 @@ h2 {
 .bookActionContainer>* {
     display: inline-block;
     width: fit-content;
+}
+.book-menu-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+}
+.menu-icon {
+    cursor: pointer;
+}
+.menu-list-container {
+    max-height: 0;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    transition: max-height 300ms linear;
+}
+.menu-list-container.active {
+    max-height: 100px;
+}
+.menu-button {
+    display: block;
+    height: 50px;
+    width: 100%;
+    margin: auto;
+    border: none;
+    text-decoration: underline;
+    background: rgba(250, 235, 215, 1);
+    box-shadow: none !important;
+}
+.menu-button:hover {
+    background-color: lightgray;
+    transform: scale(1);
 }
 button.modifyBook {
     padding: 0;
@@ -309,6 +352,16 @@ button.deleteBtn:hover {
 button:after {
     outline: inset grey 2px;
 }
+.menu-icon-container {
+    background-color: transparent;
+    text-align: right;
+    padding-right: 15px;
+    transition: all 300ms linear;
+}
+.menu-icon-container.active {
+    border-top-left-radius: 10px;
+    background-color: antiquewhite;
+}
 ::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -342,6 +395,9 @@ button:after {
     }
     .formA .bookDetails {
         width: 70vw;
+    }
+    .bookDetails {
+        padding-bottom: 15px;
     }
     .formA>* {
         width: 70vw;
@@ -388,5 +444,37 @@ button:after {
     }
     button.deleteBtn img {
         max-width: 40px;
+    }
+    .sort-mode-toggle {
+        left: -100px;
+    }
+    .book-menu-container {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    .menu-icon {
+        width: 50px;
+    }
+    .menu-button {
+        background-color: antiquewhite;
+        font-size: 1.3em;
+        height: 100px;
+        padding: 10px 0;
+    }
+    .menu-button:first-child {
+        border-bottom: 2px solid black;
+    }
+    .menu-list-container.active {
+        border-top: 2px solid black;
+        max-height: 200px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 10px;
+    }
+    .menu-icon-container.active {
+        background-color: antiquewhite;
+        transition: all 300ms linear;
+        border: 2px solid black;
+        border-bottom: none;
     }
 }
