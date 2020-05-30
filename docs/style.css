@@ -89,6 +89,9 @@ body {
 .newBookContainer {
     margin-bottom: 30px;
 }
+#new-book-btn {
+    background-color: rgb(164, 210, 155);
+}
 .formContainer .newBookContainer {
     padding: 0 50px 50px;
     border-bottom-left-radius: 50px;
@@ -283,6 +286,9 @@ h2 {
     border-bottom-right-radius: 10px;
     z-index: 1;
 }
+button.new-theme-sort-btn{
+    background-color: #f0ecbf;
+}
 .menu-icon {
     cursor: pointer;
 }
@@ -353,12 +359,12 @@ button img {
 }
 button {
     outline: none;
+    transition: all 100ms linear;
 }
 button:not(.deleteBtn) {
-    box-shadow: 0 0 7px black;
+    box-shadow: 0 0 7px -2px black;
 }
 button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     cursor: pointer;
     transform: scale(1.2);
 }
@@ -379,6 +385,9 @@ button:after {
 .menu-icon-container.active {
     border-top-left-radius: 10px;
     background-color: rgba(250, 235, 215, 0.4);
+}
+.sort-books-btn.active {
+    background-color: yellow;
 }
 ::-webkit-scrollbar-track
 {
@@ -493,5 +502,8 @@ button:after {
         transition: all 300ms linear;
         border: 2px solid black;
         border-bottom: none;
+    }
+    .sort-books-btn {
+        display: none;
     }
 }
