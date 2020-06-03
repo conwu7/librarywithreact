@@ -5,7 +5,7 @@ import {getAndSaveSort} from "./ProvideBooksArray";
 import {moveStuffAround} from "./helper";
 import {animated, useTransition} from "react-spring";
 
-class Book extends React.Component {
+export default class Book extends React.Component {
     constructor(props) {
         super(props);
         this.onEditClick = this.onEditClick.bind(this);
@@ -108,7 +108,7 @@ function ConfirmDeletePopup(passProps) {
         from: {opacity: 0, marginLeft: window.innerWidth},
         enter: {opacity: 1, transform: 'scale(1)', width: window.innerWidth, marginLeft: 0},
         leave: {opacity: 0, width: 0},
-        config: {mass: 1, tension: 250, friction: 50}, //change mass back to 1, tension to 250
+        config: {mass: 1, tension: 350, friction: 50}, //change mass back to 1, tension to 250
     })
     return transitions.map(({ item, key, props }) =>
         item &&
@@ -132,5 +132,3 @@ function ConfirmDeletePopup(passProps) {
         </animated.div>
     )
 }
-
-export default Book;
