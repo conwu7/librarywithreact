@@ -177,6 +177,10 @@ body {
     padding: 10px;
 }
 
+.bookContainer {
+    display: flex;
+}
+
 button.cancelBtn,
 button.yesDelete {
     color: antiquewhite;
@@ -207,6 +211,7 @@ button.yesDelete {
 .bookDetails {
     margin: 10px 20px;
     padding: 5px 15px;
+    width: 100%;
     border-radius: 10px;
     min-height: 211px;
     transition: all 500ms ease-in-out;
@@ -235,6 +240,12 @@ h6 {
 
 h1 {
     font-size: 400%;
+}
+.bookDetails h2 {
+    min-height: 75px;
+}
+.bookDetails h4 {
+    margin-top: 0;
 }
 
 h2 {
@@ -432,6 +443,9 @@ button:hover {
     h2 {
         font-size: 1.7em;
         max-height: 200px;
+    }
+    .bookDetails h2 {
+        min-height: 100px;
     }
     h4,
     h5 {
